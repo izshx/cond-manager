@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="loginForm">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Usuário <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input formControlName="login" required type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Senha <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input formControlName="senha" required type="password"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+
+
+</ion-content>
+
+<ion-button (click)="logar()" expand="block">Logar</ion-button>
+<ion-button expand="block" [routerLink]="['/cadastro-usuario']">Cadastrar</ion-button>

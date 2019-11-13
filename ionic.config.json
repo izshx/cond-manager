@@ -1,5 +1,7 @@
 {
   "name": "cond-manager",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
