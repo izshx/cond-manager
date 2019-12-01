@@ -10,6 +10,7 @@ import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx'
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DatabaseService } from './core/service/database.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,8 @@ import { AppRoutingModule } from './app-routing.module';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     SQLite,
-    SQLitePorter
+    SQLitePorter,
+    DatabaseService
   ],
   bootstrap: [AppComponent]
 })

@@ -43,7 +43,6 @@ export class CadastroUsuarioPage implements OnInit {
 
       const result = await this.usuarioService.salvar(usuario);
 
-
       const toast = await this.toastCtrl.create({
         header: 'Sucesso',
         message: 'Usuário salvo com sucesso.',

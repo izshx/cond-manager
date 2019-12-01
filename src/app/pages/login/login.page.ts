@@ -23,22 +23,23 @@ export class LoginPage implements OnInit {
   }
 
   logar() {
-     this.usuarioService.obterPorLogin(this.loginForm.value.login)
-      .then(async (resp) => {
-        if(resp.senha == this.loginForm.value.senha){
-          this.navCtrl.navigateForward('home');
-        } else {
-          const toast = await this.toastCtrl.create({
-            header: 'Erro',
-            message: 'Senha inválida',
-            color: 'danger',
-            position: 'bottom',
-            duration: 3000
-          });
+    this.navCtrl.navigateForward('home');
+    //  this.usuarioService.obterPorLogin(this.loginForm.value.login)
+    //   .then(async (resp) => {
+    //     if(resp.senha == this.loginForm.value.senha) {
+    //       this.navCtrl.navigateForward('home');
+    //     } else {
+    //       const toast = await this.toastCtrl.create({
+    //         header: 'Erro',
+    //         message: 'Senha inválida',
+    //         color: 'danger',
+    //         position: 'bottom',
+    //         duration: 3000
+    //       });
     
-          toast.present();
-        }
-      });
+    //       toast.present();
+    //     }
+    //   });
   
   }
 
