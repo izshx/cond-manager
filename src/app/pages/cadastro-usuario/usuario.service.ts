@@ -11,19 +11,16 @@ export class UsuarioService {
   }
 
   private async inserir(usuario: any) {
-    // const lUsuario = await this.obterPorLogin(usuario.login);
+    await this.obterPorLogin(usuario.login).then(resp => {
+      if (resp.login == usuario.login) {
+        throw "Login de usuário já existe";
+      } 
+    });
 
-    // if(lUsuario) {
-    //   if (lUsuario.nome == usuario.nome) {
-    //     throw "Login de usuário já existe";
-    //   } 
-    // } else {
-      const sql = 'insert into usuarios (nome, senha, login, perfil) values (?, ?, ?, ?)';
-      const data = [usuario.nome, usuario.senha, usuario.login, usuario.perfil ? 1 : 0];
+    const sql = 'insert into usuarios (nome, senha, login, perfil) values (?, ?, ?, ?)';
+    const data = [usuario.nome, usuario.senha, usuario.login, usuario.perfil ? 1 : 0];
 
-      return this.db.executarSQL(sql, data);
-    // }
-    
+    return this.db.executarSQL(sql, data);
   }
 
   async obterPorLogin(login) {

@@ -22,25 +22,54 @@ export class LoginPage implements OnInit {
     });
   }
 
-  logar() {
-    this.navCtrl.navigateForward('home');
-    //  this.usuarioService.obterPorLogin(this.loginForm.value.login)
-    //   .then(async (resp) => {
-    //     if(resp.senha == this.loginForm.value.senha) {
-    //       this.navCtrl.navigateForward('home');
-    //     } else {
-    //       const toast = await this.toastCtrl.create({
-    //         header: 'Erro',
-    //         message: 'Senha inválida',
-    //         color: 'danger',
-    //         position: 'bottom',
-    //         duration: 3000
-    //       });
+  async logar() {
     
-    //       toast.present();
-    //     }
-    //   });
+    if(this.loginForm.value.login == null || this.loginForm.value.senha == null){
+      this.erroToast('Usuário e senha são campos obrigatórios!')
+    } else {
+      await this.usuarioService.obterPorLogin(this.loginForm.value.login)
+       .then(async (resp) => {
+         if(resp.login == this.loginForm.value.login && resp.senha == this.loginForm.value.senha) {
+           this.navCtrl.navigateForward('home');
+
+           localStorage.setItem('usuarioLogado', JSON.stringify(resp));
+
+           const toast = await this.toastCtrl.create({
+             header: 'Sucesso',
+             message: `Seja bem-vindo(a) ${resp.nome}`,
+             color: 'success',
+             position: 'bottom',
+             duration: 1000
+           });
+     
+           toast.present();
+         } else {
+           const toast = await this.toastCtrl.create({
+             header: 'Erro',
+             message: 'Usuário ou senha inválida',
+             color: 'danger',
+             position: 'bottom',
+             duration: 1000
+           });
+     
+           toast.present();
+         }
+       });
+    }
+
   
+  }
+
+  async erroToast(msg){
+    const toast = await this.toastCtrl.create({
+      header: 'Erro',
+      message: msg,
+      color: 'danger',
+      position: 'bottom',
+      duration: 1000
+    });
+
+    toast.present();
   }
 
 }

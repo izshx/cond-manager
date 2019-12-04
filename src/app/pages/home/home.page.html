@@ -1,29 +1,32 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Cond Manager
+      Chamados
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding>
-      <ion-item>
-        <ion-label>Item</ion-label>
+    <ion-item-sliding *ngFor="let chamado of chamados">
+      <ion-item (click)="abrirDetalheChamado(chamado)">
+        <ion-label>{{chamado?.titulo}}</ion-label>
+        <div [ngStyle]="{'color': chamado.status == '0' ? 'red' : 'green' }"> 
+          {{ chamado.status == 0 ? 'Aberto' : 'Fechado' }} 
+        </div>
       </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  
-    <ion-item-sliding>
-      <ion-item>
-        <ion-label>Item</ion-label>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+      <ion-item-options side="end" *ngIf="usuarioLogado.perfil == 1 && chamado.status == 0" >
+        <ion-item-option (click)="fecharChamado(chamado.id)">
+            Fechar
+          </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="dark" (click)="cadastrarChamado()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

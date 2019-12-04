@@ -48,7 +48,7 @@ export class CadastroUsuarioPage implements OnInit {
         message: 'Usuário salvo com sucesso.',
         color: 'success',
         position: 'bottom',
-        duration: 3000
+        duration: 1000
       });
 
       toast.present();
@@ -59,7 +59,7 @@ export class CadastroUsuarioPage implements OnInit {
         message: error,
         color: 'danger',
         position: 'bottom',
-        duration: 3000
+        duration: 1000
       });
 
       toast.present();

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro de Chamado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="cadForm" (ngSubmit)="onSubmit()">
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+          <ion-item>
+            <ion-label position="stacked">Título</ion-label>
+            <ion-input formControlName="titulo" required type="text"></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label position="stacked">Número AP</ion-label>
+            <ion-input formControlName="numeroAP" required type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label position="stacked">Bloco</ion-label>
+              <ion-input formControlName="bloco" required type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label position="stacked">Local</ion-label>
+              <ion-input formControlName="local" required type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label>Descrição</ion-label>
+              <ion-textarea formControlName="descricao" clearOnEdit="true"></ion-textarea>
+            </ion-item>
+            
+        </ion-list>
+        <ion-button type="submit" expand="block">Confirmar</ion-button>
+         <ion-button expand="block" [routerLink]="['/home']">Cancelar</ion-button>
+      </form>
+
+</ion-content>
